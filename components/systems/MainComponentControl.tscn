@@ -1,0 +1,122 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwlpdp831xr2c"]
+
+[ext_resource type="Texture2D" uid="uid://b7smsm4x5h33w" path="res://resources/system/select_arrow.png" id="1_wgg1p"]
+[ext_resource type="FontFile" uid="uid://dit63h7v8lj3s" path="res://resources/system/LanaPixel.ttf" id="2_k1by4"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Selector" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 180.0
+offset_top = 22.0
+offset_right = 180.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Right" type="TextureRect" parent="Selector"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 39.999992
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(0, 20)
+texture = ExtResource("1_wgg1p")
+
+[node name="Left" type="TextureRect" parent="Selector"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(40, 20)
+texture = ExtResource("1_wgg1p")
+flip_h = true
+
+[node name="MainTexts" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 360.0
+offset_bottom = 77.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Start" type="Label" parent="MainTexts"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_right = 120.0
+offset_bottom = 25.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_k1by4")
+theme_override_font_sizes/font_size = 24
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Option" type="Label" parent="MainTexts"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -12.5
+offset_right = 120.0
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_k1by4")
+theme_override_font_sizes/font_size = 24
+text = "Option"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Exit" type="Label" parent="MainTexts"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -25.0
+offset_right = 120.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_k1by4")
+theme_override_font_sizes/font_size = 24
+text = "Exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

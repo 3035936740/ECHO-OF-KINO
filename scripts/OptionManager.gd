@@ -1,4 +1,4 @@
-extends Node
+extends RefCounted
 class_name OptionManager
 
 const DEFAULT_WIDTH: int = 480
@@ -7,50 +7,55 @@ const DEFAULT_HEIGHT: int = 270
 const CONFIG_PATH := "res://config.cfg"
 var config := ConfigFile.new()
 
-const SCALE_STEPS := [1, 2, 3, 4]
-var RESOLUTIONS : Array[Vector2i] = SCALE_STEPS.map(func(scale):
-	return Vector2i(DEFAULT_WIDTH * scale, DEFAULT_HEIGHT * scale)
-)
+const DEFAULT_SCALE_STEPS := 1
+
+const SCALE_STEPS := [DEFAULT_SCALE_STEPS, 1.5, 2, 2.5, 3.0, 3.5, 4.0]
+const RESOLUTIONS : Array[Vector2i] = [
+	Vector2i(DEFAULT_WIDTH * SCALE_STEPS[0], DEFAULT_HEIGHT * SCALE_STEPS[0]),
+	Vector2i(DEFAULT_WIDTH * SCALE_STEPS[1], DEFAULT_HEIGHT * SCALE_STEPS[1]),
+	Vector2i(DEFAULT_WIDTH * SCALE_STEPS[2], DEFAULT_HEIGHT * SCALE_STEPS[2]),
+	Vector2i(DEFAULT_WIDTH * SCALE_STEPS[3], DEFAULT_HEIGHT * SCALE_STEPS[3]),
+	Vector2i(DEFAULT_WIDTH * SCALE_STEPS[4], DEFAULT_HEIGHT * SCALE_STEPS[4]),
+	Vector2i(DEFAULT_WIDTH * SCALE_STEPS[5], DEFAULT_HEIGHT * SCALE_STEPS[5]),
+	Vector2i(DEFAULT_WIDTH * SCALE_STEPS[6], DEFAULT_HEIGHT * SCALE_STEPS[6])
+]
 
 # 默认配置（初次创建时使用）
 const DEFAULTS := {
 	"video": {
-		"resolution": Vector2i(DEFAULT_WIDTH, DEFAULT_HEIGHT)
+		"scale_steps": DEFAULT_SCALE_STEPS
 	},
 	"game": {
-		"language": "en"
+		"language": "en",
+		"debug": false
 	}
 }
 
-
-func _ready() -> void:
-	load_config()
-
-
-func load_config() -> void:
+func _init() -> void:
+	loadConfig()
+	
+func loadConfig() -> void:
 	var err = config.load(CONFIG_PATH)
 	
 	if err != OK:
-		print("[OptionManager] Config not found, creating new one.")
+		KinoLogger.Info("[OptionManager] Config not found, creating new one.")
 		# 写入默认配置
 		for section in DEFAULTS.keys():
 			for key in DEFAULTS[section].keys():
 				config.set_value(section, key, DEFAULTS[section][key])
-		save_config()
+		saveConfig()
 	else:
-		print("[OptionManager] Config loaded successfully.")
+		KinoLogger.Success("[OptionManager] Config loaded successfully.")
 
-
-func save_config() -> void:
+func saveConfig() -> void:
 	var err = config.save(CONFIG_PATH)
 	if err != OK:
-		push_error("[OptionManager] Failed to save config file.")
+		KinoLogger.Error("[OptionManager] Failed to save config file.")
 	else:
-		print("[OptionManager] Config saved to %s" % CONFIG_PATH)
-
+		KinoLogger.Info("[OptionManager] Config saved to %s" % CONFIG_PATH)
 
 # 获取配置项
-func get_value(section: String, key: String, default_value: Variant = null) -> Variant:
+func getValue(section: String, key: String, default_value: Variant = null) -> Variant:
 	if config.has_section_key(section, key):
 		return config.get_value(section, key)
 	elif default_value != null:
@@ -60,8 +65,7 @@ func get_value(section: String, key: String, default_value: Variant = null) -> V
 	else:
 		return null
 
-
 # 设置配置项（并立即保存）
-func set_value(section: String, key: String, value: Variant) -> void:
+func setValue(section: String, key: String, value: Variant) -> void:
 	config.set_value(section, key, value)
-	save_config()
+	saveConfig()

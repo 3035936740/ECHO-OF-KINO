@@ -36,7 +36,6 @@ window/size/resizable=false
 window/size/minimize_disabled=true
 window/size/maximize_disabled=true
 window/stretch/mode="canvas_items"
-window/stretch/scale_mode="integer"
 window/main_scene="uid://cu4hixaw8y2m8"
 
 [gui]
