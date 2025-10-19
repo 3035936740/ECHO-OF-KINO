@@ -29,6 +29,14 @@ Thus begins an adventure woven with **light and shadow, truth and illusion, reas
 
 ---
 
+## License
+
+This project is open source and distributed for free.
+
+### Project License
+This project is licensed under the Kino Adventure Non-Commercial License (KANCL-1.0).
+See [LICENSE](./LICENSE) for details.
+
 ### Third-party Assets
 
 **Font:** [LanaPixel](https://opengameart.org/content/lanapixel-localization-friendly-pixel-font)  
