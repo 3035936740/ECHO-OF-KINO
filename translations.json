@@ -1,0 +1,16 @@
+{
+	"en": {
+		"title_screen":{
+			"start": "Start",
+			"option": "Option", 
+			"exit": "Exit"
+		}
+	},
+	"zh": {
+		"title_screen":{
+			"start": "开始",
+			"option": "选项",
+			"exit": "退出"
+		}
+	}
+}
