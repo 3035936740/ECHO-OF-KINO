@@ -21,7 +21,7 @@ Thus begins an adventure woven with **light and shadow, truth and illusion, reas
 
 ---
 
-## 🛠️ Built With
+## Built With
 
 - **Godot Engine (v4.5)**  
 - **GDScript** / **ShaderGraph**  
@@ -29,4 +29,4 @@ Thus begins an adventure woven with **light and shadow, truth and illusion, reas
 
 ---
 
-## 📦 Project Structure
+## Project Structure
