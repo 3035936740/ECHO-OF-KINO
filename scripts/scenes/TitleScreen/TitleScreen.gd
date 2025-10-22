@@ -21,35 +21,37 @@ enum OptionMenuIndex {
 ## -----------------------------------------------------------------------------
 
 # 核心 UI 节点
-@onready var selector: Control = $Selector
-@onready var left_arrow: TextureRect = $Selector/Left
-@onready var right_arrow: TextureRect = $Selector/Right
+@onready var selector: Control = $Root/Selector
+@onready var left_arrow: TextureRect = $Root/Selector/Left
+@onready var right_arrow: TextureRect = $Root/Selector/Right
 
 # 文本列表
 @onready var main_texts: Array[Label] = [
-	$MainTexts/Start,
-	$MainTexts/Option,
-	$MainTexts/Exit
+	$Root/MainTexts/Start,
+	$Root/MainTexts/Option,
+	$Root/MainTexts/Exit
 ]
 
 @onready var Arrows: Array[TextureRect] = [
-	$Selector/Right,
-	$Selector/Left
+	$Root/Selector/Right,
+	$Root/Selector/Left
 ]
 
 @onready var option_texts: Array[Label] = [
-	$OptionTexts/Resolutions,
-	$OptionTexts/Language,
-	$OptionTexts/Return
+	$Root/OptionTexts/Resolutions,
+	$Root/OptionTexts/Language,
+	$Root/OptionTexts/Return
 ]
 
 # 根节点
-@onready var root_main_texts_node : Control = $MainTexts
-@onready var root_option_texts_node : Control = $OptionTexts
+@onready var root_main_texts_node : Control = $Root/MainTexts
+@onready var root_option_texts_node : Control = $Root/OptionTexts
+
+@onready var test_text : Label = $Root/TestText
 
 # 音效节点
-@onready var select_sfx: AudioStreamPlayer = $SelectSFX
-@onready var confirm_sfx: AudioStreamPlayer = $Confirm
+@onready var select_sfx: AudioStreamPlayer = $Root/SelectSFX
+@onready var confirm_sfx: AudioStreamPlayer = $Root/Confirm
 
 ## -----------------------------------------------------------------------------
 ## 状态和数据 (State Variables and Data)
@@ -358,7 +360,7 @@ func _ready():
 	_load_and_apply_config()
 	
 	var test_msg :String = GlobalDatas.TEST_MESSAGE[randi() % GlobalDatas.TEST_MESSAGE.size()]
-	$TestText.text = test_msg
+	test_text.text = test_msg
 	
 	selector_move(current_index)
 	max_texts = main_texts.size()

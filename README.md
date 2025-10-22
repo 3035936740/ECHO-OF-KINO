@@ -1,4 +1,4 @@
-# Kino Adventure
+# ECHO OF KINO
 
 **Engine:** Godot  
 **License:** Open Source / Free to Play  

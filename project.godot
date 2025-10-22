@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Kino Adventure"
+config/name="ECHO OF KINO"
 config/name_localized={
 "en": "English",
 "zh": "简体中文"

@@ -5,21 +5,21 @@
 	},
 	"en": {
 		"title_screen":{
-			"start": "Start",
-			"option": "Option", 
-			"exit": "Exit",
+			"start": "Browse",
+			"option": "Annotations", 
+			"exit": "Close",
 			"option_details":{
-				"return_main": "Return"
+				"return_main": "Back"
 			}
 		}
 	},
 	"zh": {
 		"title_screen":{
-			"start": "开始",
-			"option": "选项",
-			"exit": "退出",
+			"start": "翻阅",
+			"option": "批注",
+			"exit": "合上",
 			"option_details":{
-				"return_main": "返回"
+				"return_main": "前页"
 			}
 		}
 	}

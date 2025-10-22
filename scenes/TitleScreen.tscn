@@ -1,23 +1,58 @@
-[gd_scene load_steps=7 format=3 uid="uid://12yhjdf802ap"]
+[gd_scene load_steps=14 format=3 uid="uid://12yhjdf802ap"]
 
 [ext_resource type="Script" uid="uid://b2t6d0spysupn" path="res://scripts/scenes/TitleScreen/TitleScreen.gd" id="1_7mpxs"]
 [ext_resource type="Texture2D" uid="uid://cufki23yprtfa" path="res://resources/system/title_bg.png" id="1_dxgpu"]
+[ext_resource type="Shader" uid="uid://dyj44f5b0v3mu" path="res://shaders/crt.gdshader" id="2_3ej01"]
+[ext_resource type="Shader" uid="uid://bdx736dcuiqyd" path="res://shaders/RetroVHSGlitch.gdshader" id="3_1vfo2"]
+[ext_resource type="Texture2D" uid="uid://dpv65p0jrsgnt" path="res://resources/system/title_text.png" id="3_66w26"]
 [ext_resource type="Texture2D" uid="uid://b7smsm4x5h33w" path="res://resources/system/select_arrow.png" id="3_dfj8j"]
+[ext_resource type="Shader" uid="uid://3nmjw766vux4" path="res://shaders/2dFlagWave.gdshader" id="4_w20ru"]
 [ext_resource type="AudioStream" uid="uid://ulcrkv8di0kl" path="res://resources/sfx/select_sfx.ogg" id="5_4l16e"]
 [ext_resource type="FontFile" uid="uid://dit63h7v8lj3s" path="res://resources/system/LanaPixel.ttf" id="5_85feu"]
 [ext_resource type="AudioStream" uid="uid://cd0o8wthtlbtr" path="res://resources/sfx/confirm.ogg" id="6_85feu"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w20ru"]
+shader = ExtResource("2_3ej01")
+shader_parameter/brightnessMult = 4.0
+shader_parameter/wiggleMult = 0.005
+shader_parameter/chromaticAberrationOffset = 0.001
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hjcsb"]
+shader = ExtResource("3_1vfo2")
+shader_parameter/intensity = 0.14400000684
+shader_parameter/glitch_frequency = 4.959000232292619
+shader_parameter/red_displacement = 0.02000000095
+shader_parameter/green_displacement = 0.038000001805
+shader_parameter/blue_displacement = 0.01200000057
+shader_parameter/scanline_intensity = 0.438000020805
+shader_parameter/noise_intensity = 0.1550000073625
+shader_parameter/slice_intensity = 0.538000025555
+shader_parameter/ghost_intensity = 0.106000005035
+shader_parameter/negative_intensity = 0.0110000005225
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vfo2"]
+shader = ExtResource("4_w20ru")
+shader_parameter/amplitude = 0.6990000332025
+shader_parameter/frequency = 3.0
+shader_parameter/speed = 1.0
+shader_parameter/pole_side = 0
+shader_parameter/fixed_edge_range = 0.2
+
 [node name="Game" type="CanvasLayer"]
 script = ExtResource("1_7mpxs")
 
-[node name="TitleBG" type="TextureRect" parent="."]
+[node name="Root" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_w20ru")
+
+[node name="TitleBG" type="TextureRect" parent="Root"]
 texture_filter = 1
 texture_repeat = 1
+material = SubResource("ShaderMaterial_hjcsb")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -240.0
-offset_bottom = -135.0
+offset_right = 240.0
+offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
@@ -27,20 +62,34 @@ texture = ExtResource("1_dxgpu")
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="Selector" type="Control" parent="."]
+[node name="TitleText" type="TextureRect" parent="Root"]
+material = SubResource("ShaderMaterial_1vfo2")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 61.0
+offset_top = 34.0
+offset_right = 240.0
+offset_bottom = 85.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+texture = ExtResource("3_66w26")
+
+[node name="Selector" type="Control" parent="Root"]
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -39.0
+offset_left = 201.0
 offset_top = 149.0
-offset_right = 37.0
+offset_right = 277.0
 offset_bottom = 189.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Right" type="TextureRect" parent="Selector"]
+[node name="Right" type="TextureRect" parent="Root/Selector"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -56,7 +105,7 @@ scale = Vector2(0.25, 0.25)
 pivot_offset = Vector2(0, 20)
 texture = ExtResource("3_dfj8j")
 
-[node name="Left" type="TextureRect" parent="Selector"]
+[node name="Left" type="TextureRect" parent="Root/Selector"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -70,20 +119,20 @@ pivot_offset = Vector2(40, 20)
 texture = ExtResource("3_dfj8j")
 flip_h = true
 
-[node name="MainTexts" type="Control" parent="."]
+[node name="MainTexts" type="Control" parent="Root"]
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -178.0
+offset_left = 62.0
 offset_top = 167.0
-offset_right = 182.0
+offset_right = 422.0
 offset_bottom = 244.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Start" type="Label" parent="MainTexts"]
+[node name="Start" type="Label" parent="Root/MainTexts"]
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
@@ -102,7 +151,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Option" type="Label" parent="MainTexts"]
+[node name="Option" type="Label" parent="Root/MainTexts"]
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
@@ -125,7 +174,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Exit" type="Label" parent="MainTexts"]
+[node name="Exit" type="Label" parent="Root/MainTexts"]
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
@@ -147,21 +196,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="OptionTexts" type="Control" parent="."]
+[node name="OptionTexts" type="Control" parent="Root"]
 visible = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -178.0
+offset_left = 62.0
 offset_top = 162.0
-offset_right = 182.0
+offset_right = 422.0
 offset_bottom = 239.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Resolutions" type="Label" parent="OptionTexts"]
+[node name="Resolutions" type="Label" parent="Root/OptionTexts"]
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
@@ -180,7 +229,7 @@ text = "480x270"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Language" type="Label" parent="OptionTexts"]
+[node name="Language" type="Label" parent="Root/OptionTexts"]
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
@@ -202,7 +251,7 @@ text = "English"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Return" type="Label" parent="OptionTexts"]
+[node name="Return" type="Label" parent="Root/OptionTexts"]
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
@@ -224,11 +273,11 @@ text = "Return"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SelectSFX" type="AudioStreamPlayer" parent="."]
+[node name="SelectSFX" type="AudioStreamPlayer" parent="Root"]
 stream = ExtResource("5_4l16e")
 volume_db = -15.0
 
-[node name="TestText" type="Label" parent="."]
+[node name="TestText" type="Label" parent="Root"]
 texture_filter = 1
 texture_repeat = 1
 anchors_preset = -1
@@ -236,10 +285,10 @@ anchor_left = 0.5
 anchor_top = 0.96900004
 anchor_right = 0.5
 anchor_bottom = 0.96900004
-offset_left = -230.0
-offset_top = -12.630005
-offset_right = 230.0
-offset_bottom = 12.369995
+offset_left = 10.0
+offset_top = 249.0
+offset_right = 470.0
+offset_bottom = 274.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -249,6 +298,6 @@ text = "Test Message"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Confirm" type="AudioStreamPlayer" parent="."]
+[node name="Confirm" type="AudioStreamPlayer" parent="Root"]
 stream = ExtResource("6_85feu")
 volume_db = -15.0
