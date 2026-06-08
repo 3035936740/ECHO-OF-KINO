@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/counts_deceit.ogg-8d426a252abca682f0576a453f4
 [params]
 
 loop=true
-loop_offset=17.405
-bpm=164.3
+loop_offset=8.78
+bpm=164.0
 beat_count=0
 bar_beats=4

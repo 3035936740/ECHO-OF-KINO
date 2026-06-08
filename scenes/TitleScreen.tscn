@@ -301,3 +301,6 @@ vertical_alignment = 1
 [node name="Confirm" type="AudioStreamPlayer" parent="Root"]
 stream = ExtResource("6_85feu")
 volume_db = -15.0
+
+[node name="TitleMusic" type="AudioStreamPlayer2D" parent="Root"]
+volume_db = -20.0

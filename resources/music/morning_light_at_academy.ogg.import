@@ -14,6 +14,6 @@ dest_files=["res://.godot/imported/morning_light_at_academy.ogg-62b90b8a14b72935
 
 loop=true
 loop_offset=0.0
-bpm=100.42
+bpm=100.0
 beat_count=0
 bar_beats=4

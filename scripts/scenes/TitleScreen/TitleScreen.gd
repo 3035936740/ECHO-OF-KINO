@@ -52,6 +52,7 @@ enum OptionMenuIndex {
 # 音效节点
 @onready var select_sfx: AudioStreamPlayer = $Root/SelectSFX
 @onready var confirm_sfx: AudioStreamPlayer = $Root/Confirm
+@onready var title_music: AudioStreamPlayer2D = $Root/TitleMusic
 
 ## -----------------------------------------------------------------------------
 ## 状态和数据 (State Variables and Data)
@@ -306,8 +307,20 @@ func _return_to_main_control():
 	leftright_arrow_indexs = []
 	selector_move(current_index)
 	max_texts = main_texts.size()
-	root_option_texts_node.hide()
+	root_option_texts_node.hide();
 
+func _title_music_play(delay_time: float, fade_duration: float, target_db: float, start_db: float):	
+	# 延迟播放
+	await get_tree().create_timer(delay_time).timeout;
+
+	# 初始化音量
+	title_music.volume_db = start_db;
+	title_music.play()
+
+	# 用 Tween 做音量淡入
+	var tween = create_tween()
+	tween.tween_property(title_music, "volume_db", target_db, fade_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	
 ## -----------------------------------------------------------------------------
 ## 主输入循环 (Main Input Loops)
 ## -----------------------------------------------------------------------------
@@ -364,6 +377,9 @@ func _ready():
 	
 	selector_move(current_index)
 	max_texts = main_texts.size()
+	_title_music_play(0.0, 1.5, 0.0, -80.0)
+
+
 
 func _process(delta: float) -> void:
 	if is_option:

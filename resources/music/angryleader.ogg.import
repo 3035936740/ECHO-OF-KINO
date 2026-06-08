@@ -14,6 +14,6 @@ dest_files=["res://.godot/imported/angryleader.ogg-528ac300f3424ab808c9d9864febc
 
 loop=true
 loop_offset=0.0
-bpm=0.0
+bpm=172.0
 beat_count=0
 bar_beats=4
